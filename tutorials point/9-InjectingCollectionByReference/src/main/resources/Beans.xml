@@ -1,0 +1,93 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <!-- Definition for javaCollection -->
+   <bean id = "javaCollection" class = "spring.tutorialspoint.JavaCollection">
+
+
+
+	  <!-- 1 -->
+      <!-- Passing bean reference  for java.util.List -->
+      <property name = "addressList">
+         <list>
+			<!-- here the scope of the bean address1 and address2  is global hence address1 and address2 is accessible-->         	
+            <ref bean = "address1"/>
+            <ref bean = "address2"/>
+            <value>Pakistan</value>
+            <bean class="spring.tutorialspoint.Address">
+            	<property name="country">
+					<ref bean = "country11"/>		            		
+            	</property>
+            	<!-- we can give bead definition inside the constructor as well as property(setter) -->
+				<!-- <property name="country">
+					<bean name="country11" class="spring.tutorialspoint.Country">
+						<property name="countryName" value="using country setter" />
+						<constructor-arg name="countryName" value="Venezuela"></constructor-arg>
+					</bean>		            		
+            	</property>
+            	 -->
+
+            	
+            	<property name="address" value="using address setter"></property>
+            	<property name="city" value="using city setter"></property>
+            </bean>
+         </list>
+      </property>
+      
+      
+      <!-- 2 -->
+      <!-- Passing bean reference  for java.util.Set -->
+      <property name = "addressSet">
+         <set>
+         	<!-- here the scope of the bean address1 and address2  is global hence address1 and address2 is accessible-->
+            <ref bean = "address1"/>
+            <ref bean = "address2"/>
+            
+			<!-- here the scope of the bean adddress3 is local to the entry object hence address3 is not accessible at here -->            
+			<!-- <ref bean = "address3"/> -->
+			
+            <value>Pakistan</value>
+            <bean class="spring.tutorialspoint.Address">
+            	<!-- we can give bead definition inside the constructor as well as property(setter) -->
+            	<constructor-arg name="address4">
+            		<bean name="country1" class="spring.tutorialspoint.Country">
+            			<constructor-arg value="INDIAAAAAA"></constructor-arg>
+            		</bean>
+            	</constructor-arg>
+            </bean>
+         </set>
+      </property>
+      
+      
+      <!-- 3 -->
+      <!-- Passing bean reference  for java.util.Map -->
+      <property name = "addressMap">
+         <map>
+            <entry key = "one" value = "INDIA"/>
+            <!-- here the scope of the bean address1 and address2  is global hence address1 and address2 is accessible-->
+            <entry key = "two" value-ref = "address1"/>
+            <entry key = "three" value-ref = "address2"/>
+            <entry key = "four">
+            	<!-- here the scope of the bean is local to the entry object hence address3 is not accessible at 1 -->
+  				<bean name="address3" class="spring.tutorialspoint.Address">
+  					<constructor-arg name="address3" value="a2-1303"/>
+  					<constructor-arg name="address3" value="pune"/>
+  				</bean>         	
+            </entry>
+         </map>
+      </property>
+   </bean>
+   
+   <!-- here the scope of the bean is global hence address1 and address2 is accessible at 1,2,3 -->
+   <bean name="address1" class="spring.tutorialspoint.Address"/>
+   <bean name="address2" class="spring.tutorialspoint.Address"/>
+
+		<bean name="country11" class="spring.tutorialspoint.Country">
+			<!-- <property name="countryName" value="using country setter" /> -->
+			<constructor-arg name="countryName" value="Venezuela"></constructor-arg>
+		</bean>
+</beans>

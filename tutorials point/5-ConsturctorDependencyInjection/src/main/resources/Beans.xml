@@ -1,0 +1,40 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <!-- Definition for textEditor bean -->
+   <!-- in case you are passing a reference to an object, you need to use ref attribute of <constructor-arg> tag and if you are passing a value directly then you should use value attribute -->
+   <bean id = "textEditor" class = "spring.tutorialspoint.TextEditor">
+      <constructor-arg ref = "spellChecker"/>
+   </bean>
+
+   <!-- Definition for spellChecker bean -->
+   <bean id = "spellChecker" class = "spring.tutorialspoint.SpellChecker"></bean>
+
+	<bean id = "foo" class = "x.y.Foo">
+      <constructor-arg ref = "bar"/>
+      <constructor-arg ref = "baz"/>
+   </bean>
+
+	<!-- the order in which tthe constructors are placed is the order they are passe -->
+   <bean id = "bar" class = "x.y.Bar">
+		<constructor-arg value="firstname"/>
+		<constructor-arg value="lastname"/>
+   </bean>
+   
+   <bean id = "baz" class = "x.y.Baz"/>
+   
+   <!-- if you mention the type and there is no ambiguity we can shuffle the order of the constructor --> 
+   <bean id = "foo2" class = "x.y.Foo2">
+      <constructor-arg type = "java.lang.String" value = "Zara"/>
+      <constructor-arg type = "int" value = "2001"/>
+   </bean>
+   
+   <bean id = "exampleBean" class = "x.y.ExampleBean">
+      <constructor-arg index = "0" value = "2001"/>
+      <constructor-arg index = "1" value = "Zara"/>
+   </bean>
+</beans>

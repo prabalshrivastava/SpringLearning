@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>spring.tutorialspoint</groupId>
+  <artifactId>1-bean-scope-singleton-prototype</artifactId>
+  <version>1.00</version>
+  <name>1-bean-scope-singleton-prototype</name>
+  <description>1-bean-scope-singleton-prototype</description>
+  
+  
+  <dependencies>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring</artifactId>
+		<version>2.5.6</version>
+	</dependency>
+  </dependencies>
+  
+</project>
